@@ -1,195 +1,223 @@
 /**
- * Phenix Front-End Operational Suite (Session 2)
- * Core Features: Counter Rollups, Map Tooltip Tracking, Portfolio Filtering, Modal State Injections
+ * PHENIX BIOGAS INFRASTRUCTURE ENGINE
+ * Core Frontend Interactivity Framework v2.1.0
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Register GSAP plugins cleanly
-    gsap.registerPlugin(ScrollTrigger);
-    
-    initGlobalScripts();
-    if (document.querySelector('.stats-wall')) initImpactAnalytics();
-    if (document.querySelector('.project-grid')) initProjectPortfolio();
+    // Initialize all core interaction layers
+    initScrollAnimations();
+    initAnimatedCounters();
+    initMapTelemetry();
+    initArchitecturalModal();
 });
 
 /**
- * Universal Shared Page Components (Sticky Nav Control)
+ * 1. GSAP ScrollTrigger Reveal Animations
+ * Automatically tracks elements with .reveal-up, .reveal-left, and .reveal-right
+ * classes as they scroll into the viewport window.
  */
-function initGlobalScripts() {
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+function initScrollAnimations() {
+    // Ensure GSAP and ScrollTrigger plugins are loaded locally or via CDN
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Universal GSAP Reveal Directives for Modern Structural Flows
-    gsap.utils.toArray('.reveal-up').forEach(elem => {
-        gsap.to(elem, {
-            scrollTrigger: { trigger: elem, start: "top 85%", toggleActions: "play none none none" },
-            opacity: 1, y: 0, duration: 1, ease: "power3.out"
+        // Vertical Reveal Up
+        gsap.utils.toArray(".reveal-up").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
         });
-    });
 
-    if(document.querySelector('.reveal-left')) {
-        gsap.to('.reveal-left', {
-            scrollTrigger: { trigger: '.reveal-left', start: "top 80%" },
-            opacity: 1, x: 0, duration: 1.2, ease: "power2.out"
+        // Horizontal Reveal Left-to-Right
+        gsap.utils.toArray(".reveal-left").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, x: -50 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
         });
-    }
 
-    if(document.querySelector('.reveal-right')) {
-        gsap.to('.reveal-right', {
-            scrollTrigger: { trigger: '.reveal-right', start: "top 80%" },
-            opacity: 1, x: 0, duration: 1.2, ease: "power2.out"
+        // Horizontal Reveal Right-to-Left
+        gsap.utils.toArray(".reveal-right").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, x: 50 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
         });
     }
 }
 
 /**
- * Impact and Analytics Systems Logic
+ * 2. Auto-Incrementing Impact Counters
+ * Animates analytical numerical vectors on the Impact page from 0 to target value 
+ * using scroll thresholds.
  */
-function initImpactAnalytics() {
-    // Scroll-triggered precision counter metric logic
-    const counters = document.querySelectorAll('.counter');
-    
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        
+function initAnimatedCounters() {
+    const counters = document.querySelectorAll(".counter");
+    if (counters.length === 0) return;
+
+    const countTo = (counter) => {
+        const target = +counter.getAttribute("data-target");
+        const duration = 2000; // Animation lifecycle time in milliseconds
+        const startTime = performance.now();
+
+        const updateCount = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth mathematical slowdown
+            const easeOutQuad = progress * (2 - progress);
+            const currentValue = Math.floor(easeOutQuad * target);
+
+            counter.innerText = currentValue;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        requestAnimationFrame(updateCount);
+    };
+
+    // Trigger calculation when numbers hit the visual range via ScrollTrigger if available
+    if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.create({
-            trigger: counter,
+            trigger: ".stats-wall",
             start: "top 85%",
             onEnter: () => {
-                let count = 0;
-                const speed = target / 60; // 60 frames structural window execution
-                const updateCount = () => {
-                    count += speed;
-                    if (count < target) {
-                        counter.innerText = Math.floor(count);
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
+                counters.forEach(c => countTo(c));
             }
         });
-    });
+    } else {
+        // Fallback execution if dependency loops are delayed
+        counters.forEach(c => countTo(c));
+    }
+}
 
-    // Interactive Map Tooltip Tracking Sequence
-    const pins = document.querySelectorAll('.map-pin');
-    const tooltip = document.getElementById('map-tooltip');
+/**
+ * 3. Regional Map Telemetry Module
+ * Binds regional geo-location coordinates to a highly responsive tracker tooltip viewport.
+ */
+function initMapTelemetry() {
+    const tooltip = document.getElementById("map-tooltip");
+    const pins = document.querySelectorAll(".map-pin");
+    if (!tooltip || pins.length === 0) return;
 
     pins.forEach(pin => {
-        pin.addEventListener('mouseenter', (e) => {
-            tooltip.innerText = e.target.getAttribute('data-info');
-            tooltip.style.color = 'var(--amber-glow)';
+        // Hover state listener
+        pin.addEventListener("mouseenter", () => {
+            const info = pin.getAttribute("data-info");
+            tooltip.innerText = info;
+            tooltip.style.opacity = "1";
+            tooltip.style.visibility = "visible";
+            tooltip.classList.add("active");
         });
-        pin.addEventListener('mouseleave', () => {
+
+        // Mouse motion vector mapping
+        pin.addEventListener("mousemove", (e) => {
+            const mapWrapper = pin.parentElement;
+            const mapRect = mapWrapper.getBoundingClientRect();
+            
+            // Offset coordinates smoothly around mouse point indices
+            const leftPos = e.clientX - mapRect.left + 15;
+            const topPos = e.clientY - mapRect.top + 15;
+            
+            tooltip.style.left = `${leftPos}px`;
+            tooltip.style.top = `${topPos}px`;
+        });
+
+        // Mouse exit listener
+        pin.addEventListener("mouseleave", () => {
+            tooltip.style.opacity = "0";
+            tooltip.style.visibility = "hidden";
+            tooltip.classList.remove("active");
             tooltip.innerText = "Hover over regional pins";
-            tooltip.style.color = '#fff';
         });
     });
 }
 
 /**
- * Project Portfolio Dynamic Repository Datastore & Operations
+ * 4. Deep-Dive Architectural Modal Overlay
+ * Handles programmatic data generation for engineering card overlays.
  */
-const mockProjectData = {
-    amul: {
-        title: "Surat Dairy Effluent Treatment Facility",
-        client: "Regional Milk Producers Cooperative",
-        location: "Surat, Gujarat",
-        capacity: "25 TPD Bio-CNG Matrix",
-        before: "35,000 ppm chemical oxygen demand discharge raw loading stress.",
-        after: "Zero environmental discharge penalty; 100% processing system thermal loop dependency self-supplied.",
-        testimonial: "Phenix converted our downstream compliance nightmare into an unyielding profit center. The ROI window collapsed below 22 months.",
-        author: "Director of Infrastructure Operations"
-    },
-    indore: {
-        title: "Indore Smart City Solid Waste Nexus",
-        client: "Municipal Urban Cleanliness Enterprise",
-        location: "Indore, Madhya Pradesh",
-        capacity: "500 Tonnes Progressive Input Capacity",
-        before: "Landfill load aggregation hitting 400 metric tonnes daily expansion margins.",
-        after: "Complete elimination of regional organic degradation vectors; fuels municipal urban mass transit networks.",
-        testimonial: "This plant forms the absolute spine of our zero-waste municipal vision. Pure technological execution.",
-        author: "Chief Municipal Commissioner"
-    },
-    punjab: {
-        title: "Punjab Paddy Straw Bio-CNG Matrix",
-        client: "Agricultural Grid Aggregation Syndicate",
-        location: "Sangrur, Punjab",
-        capacity: "35 TPD Bio-CNG Yield Network",
-        before: "Widespread seasonal agricultural burning yielding toxic ambient air columns.",
-        after: "120,000 dense seasonal acres cleared of combustive liabilities directly into processing streams.",
-        testimonial: "Phenix delivered field-level operational collection logistics where others failed completely. Outstanding engineering.",
-        author: "President, Sustainable Farm Alliance"
-    }
-};
+function initArchitecturalModal() {
+    const overlay = document.querySelector(".modal-overlay");
+    const closeBtn = document.querySelector(".modal-close-btn");
+    const modalBody = document.querySelector(".modal-body-render");
+    const triggers = document.querySelectorAll("[data-modal-target]");
 
-function initProjectPortfolio() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    if (!overlay || !closeBtn || !modalBody) return;
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+    // Open Modal with targeted dataset content
+    triggers.forEach(trigger => {
+        trigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetType = trigger.getAttribute("data-modal-target");
+            
+            // Build situational technical specifications content inside modal context windows
+            if (targetType === "hardware-spec") {
+                modalBody.innerHTML = `
+                    <h3 class="text-2xl font-bold text-amber uppercase mb-4">Anaerobic Hardware Blueprint</h3>
+                    <p class="text-sm text-gray-300 mb-4">High-rate automated system arrays structured with high continuous loading specifications:</p>
+                    <table class="w-full text-left text-xs border border-gray-800 text-gray-400">
+                        <tr class="border-b border-gray-800 bg-black-pure"><th class="p-2">Parameter</th><th class="p-2">Engineering Value</th></tr>
+                        <tr class="border-b border-gray-800"><td class="p-2">Core Temp Band</td><td class="p-2 text-green">55°C (Thermophilic)</td></tr>
+                        <tr class="border-b border-gray-800"><td class="p-2">Volatile Solids Red.</td><td class="p-2 text-green">Up to 88% Net destruction</td></tr>
+                        <tr><td class="p-2">Biomaterial Ingestion</td><td class="p-2 text-amber">Continuous Dual-Phase Feed</td></tr>
+                    </table>
+                `;
+            } else {
+                modalBody.innerHTML = `
+                    <h3 class="text-2xl font-bold text-green uppercase mb-4">System Telemetry Matrix</h3>
+                    <p class="text-sm text-gray-300">Live configuration arrays currently synchronizing edge monitoring streams to remote operational clouds.</p>
+                `;
+            }
 
-            const filterValue = button.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'block';
-                    gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4 });
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            overlay.classList.add("open");
+            document.body.style.overflow = "hidden"; // Clip underlying scrolling actions
         });
     });
-}
 
-// Deep Dive Contextual Project Modal Management Actions
-function openProjectModal(key) {
-    const data = mockProjectData[key];
-    if (!data) return;
+    // Close Actions
+    const closeModal = () => {
+        overlay.classList.remove("open");
+        document.body.style.overflow = "";
+    };
 
-    const body = document.getElementById('modal-dynamic-body');
-    body.innerHTML = `
-        <h2 class="text-3xl font-bold uppercase tracking-wider text-amber mb-2">${data.title}</h2>
-        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-6">${data.client} &nbsp;|&nbsp; ${data.location}</p>
-        
-        <div class="grid-2 gap-6 mb-8">
-            <div style="background: rgba(255,255,255,0.02); padding: 20px; border-left: 2px solid #ef4444;">
-                <h4 class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-2">Operational baseline (Before)</h4>
-                <p class="text-sm text-gray-300 leading-relaxed">${data.before}</p>
-            </div>
-            <div style="background: rgba(46,196,182,0.03); padding: 20px; border-left: 2px solid var(--green-glow);">
-                <h4 class="text-xs text-green uppercase tracking-wider font-bold mb-2">Phenix Ecosystem Outcome (After)</h4>
-                <p class="text-sm text-white leading-relaxed font-bold">${data.after}</p>
-            </div>
-        </div>
-
-        <div style="background: var(--bg-dark); padding: 30px; border: 1px dashed rgba(255,255,255,0.05); border-radius: 4px;">
-            <p class="text-gray-300 italic text-sm leading-relaxed">"${data.testimonial}"</p>
-            <h5 class="text-xs text-amber font-bold uppercase tracking-wider mt-4">— ${data.author}</h5>
-        </div>
-        
-        <div class="mt-8 flex-between text-xs font-bold uppercase text-gray-500 tracking-widest">
-            <span>Engineering Architecture Verified</span>
-            <span class="text-green">Capacity Metric: ${data.capacity}</span>
-        </div>
-    `;
-
-    document.getElementById('project-modal').classList.add('active');
-}
-
-function closeProjectModal(e) {
-    if (e.target.classList.contains('modal-overlay')) {
-        document.getElementById('project-modal').classList.remove('active');
-    }
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+    });
 }

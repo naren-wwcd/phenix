@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1280, initial-scale=1.0">
-    <title>Case Portfolio | Phenix Biogas</title>
+    <title>Case Portfolio & Deployments | Phenix Biogas</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -27,72 +27,25 @@
     <section class="page-hero relative">
         <div class="hero-overlay"></div>
         <div class="container relative z-10 text-center">
-            <h1 class="glow-text-green text-6xl font-bold uppercase tracking-wider">Industrial Deployments</h1>
-            <p class="text-gray-400 text-xl mt-4 max-w-2xl mx-auto">Explore high-capacity functional facilities changing the regional energy paradigms.</p>
+            <h1 class="glow-text-amber text-6xl font-bold uppercase tracking-wider">Deployments Index</h1>
+            <p class="text-gray-400 text-xl mt-4 max-w-2xl mx-auto">A programmatic catalog of active energy generation infrastructure across global corridors.</p>
         </div>
     </section>
 
-    <section class="py-10 container">
-        <div class="filter-bar flex-center gap-6">
-            <button class="filter-btn active" data-filter="all">All Ecosystems</button>
-            <button class="filter-btn" data-filter="industrial">Industrial Effluents</button>
-            <button class="filter-btn" data-filter="municipal">Municipal Solid Waste</button>
-            <button class="filter-btn" data-filter="agricultural">Agricultural / Agro-Waste</button>
+    <section class="py-20 container">
+        <div class="grid-2 gap-12 text-left">
+            <div class="stat-card reveal-left">
+                <span class="text-xs uppercase font-bold tracking-widest text-green">Gujarat Mega-Plant</span>
+                <h4 class="text-white font-bold text-lg mt-1">50 TPD Bio-CNG Matrix Facility</h4>
+                <p class="text-xs text-gray-400 mt-2 leading-relaxed">Processing industrial agricultural residues continuously to supply premium fuel directly into local utility lines with complete monitoring integration protocols.</p>
+            </div>
+            <div class="stat-card reveal-right">
+                <span class="text-xs uppercase font-bold tracking-widest text-amber">Delhi Cluster</span>
+                <h4 class="text-white font-bold text-lg mt-1">12 Decentralized Commercial Systems</h4>
+                <p class="text-xs text-gray-400 mt-2 leading-relaxed">Treating massive urban municipal solid wastes (MSW) before they can hit landfill sites, utilizing automated triage algorithms for incoming feed stocks.</p>
+            </div>
         </div>
     </section>
-
-    <section class="pb-20 container">
-        <div class="grid-3 project-grid" id="project-grid">
-            
-            <div class="project-card reveal-up" data-category="industrial" onclick="openProjectModal('amul')">
-                <div class="project-img-placeholder"></div>
-                <div class="p-6">
-                    <span class="tag tag-amber">Industrial</span>
-                    <h3 class="text-xl font-bold mt-2 text-white">Surat Dairy Effluent Treatment Facility</h3>
-                    <p class="text-gray-400 text-sm mt-2">Transforming complex food processing wastewater streams into highly pure thermal energy.</p>
-                    <div class="flex-between mt-6 text-xs font-bold text-green tracking-wider uppercase">
-                        <span>Cap: 25 TPD Bio-CNG</span>
-                        <span>Loc: Gujarat</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal-up" data-category="municipal" onclick="openProjectModal('indore')">
-                <div class="project-img-placeholder"></div>
-                <div class="p-6">
-                    <span class="tag tag-green">Municipal</span>
-                    <h3 class="text-xl font-bold mt-2 text-white">Indore Smart City Solid Waste Nexus</h3>
-                    <p class="text-gray-400 text-sm mt-2">Decentralized municipal infrastructure treating segregrated wet waste at urban scale.</p>
-                    <div class="flex-between mt-6 text-xs font-bold text-amber tracking-wider uppercase">
-                        <span>Cap: 500 TPD Input</span>
-                        <span>Loc: Madhya Pradesh</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal-up" data-category="agricultural" onclick="openProjectModal('punjab')">
-                <div class="project-img-placeholder"></div>
-                <div class="p-6">
-                    <span class="tag tag-amber">Agricultural</span>
-                    <h3 class="text-xl font-bold mt-2 text-white">Punjab Paddy Straw Bio-CNG Matrix</h3>
-                    <p class="text-gray-400 text-sm mt-2">Mitigating stubble-burning externalities by upgrading rice straw to clean vehicle fuels.</p>
-                    <div class="flex-between mt-6 text-xs font-bold text-green tracking-wider uppercase">
-                        <span>Cap: 35 TPD Bio-CNG</span>
-                        <span>Loc: Punjab</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="modal-overlay" id="project-modal" onclick="closeProjectModal(event)">
-        <div class="modal-content border border-amber-alpha bg-dark-soft">
-            <button class="modal-close-btn" onclick="document.getElementById('project-modal').classList.remove('active')">&times;</button>
-            <div id="modal-dynamic-body">
-                </div>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container footer-grid">
@@ -128,7 +81,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/910000000000" class="whatsapp-btn" target="_blank" aria-label="Connect with an Executive Engineer">
+    <a href="https://wa.me/910000000000" class="whatsapp-btn" target="_blank">
         <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-3.511c1.56.926 3.454 1.414 5.383 1.415h.005c5.543 0 10.054-4.51 10.058-10.051.002-2.685-1.041-5.21-2.937-7.109-1.894-1.897-4.417-2.942-7.104-2.943-5.549 0-10.06 4.511-10.064 10.052-.001 1.95.51 3.852 1.481 5.56l-.379 1.383 1.422-.373z"/></svg>
     </a>
 

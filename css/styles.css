@@ -1,12 +1,15 @@
-/* Core Structural Settings for Monitor / Desktop Viewports (min 1280px optimized) */
+/* ==========================================================================
+   Phenix Biogas Master Corporate Architecture Stylesheet
+   ========================================================================== */
+
+/* 1. Global Core Variables & Resets */
 :root {
-    --bg-dark: #07090e;
-    --bg-dark-soft: #0f131a;
-    --amber-glow: #ff9f1c;
-    --green-glow: #2ec4b6;
-    --text-light: #f4f5f6;
-    --amber-alpha: rgba(255, 159, 28, 0.15);
-    --green-alpha: rgba(46, 196, 182, 0.15);
+    --bg-dark: #090a0f;
+    --bg-dark-soft: #0f1115;
+    --text-light: #f3f4f6;
+    --amber: #f59e0b;
+    --green: #10b981;
+    --border-amber-alpha: rgba(245, 158, 11, 0.15);
 }
 
 * {
@@ -15,365 +18,465 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-dark);
     color: var(--text-light);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
-    min-width: 1280px; /* Forces uniform monitor standard layout execution */
 }
 
-/* Typography Utility */
-.text-center { text-align: center; }
-.uppercase { text-transform: uppercase; }
-.tracking-wider { letter-spacing: 0.15em; }
-.tracking-widest { letter-spacing: 0.25em; }
-.font-bold { font-weight: 700; }
-.text-6xl { font-size: 3.75rem; }
-.text-2xl { font-size: 1.75rem; }
-.text-xl { font-size: 1.25rem; }
-.text-sm { font-size: 0.875rem; }
-.text-xs { font-size: 0.75rem; }
-.text-gray-400 { color: #a0aec0; }
-.text-gray-500 { color: #718096; }
-.text-gray-600 { color: #4a5568; }
-.text-white { color: #ffffff; }
-.text-amber { color: var(--amber-glow); }
-.text-green { color: var(--green-glow); }
-
-/* Layout Grid Utilities */
 .container {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 2rem;
 }
-.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+
+/* Structural Spacing Utilities */
+.relative { position: relative; }
+.z-10 { z-index: 10; }
 .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-.pb-20 { padding-bottom: 5rem; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
 .mb-6 { margin-bottom: 1.5rem; }
 .mb-10 { margin-bottom: 2.5rem; }
+.mb-12 { margin-bottom: 3rem; }
 .mt-2 { margin-top: 0.5rem; }
 .mt-4 { margin-top: 1rem; }
 .mt-6 { margin-top: 1.5rem; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-.flex-center { display: flex; justify-content: center; align-items: center; }
-.flex-between { display: flex; justify-content: space-between; align-items: center; }
-.gap-6 { gap: 1.5rem; }
-.gap-12 { gap: 3rem; }
-.relative { position: relative; }
-.z-10 { z-index: 10; }
-.items-center { align-items: center; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+.pt-6 { padding-top: 1.5rem; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.uppercase { text-transform: uppercase; }
+.max-w-2xl { max-w: 42rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
 
-/* Glowing Text Treatments */
-.glow-text-amber {
-    text-shadow: 0 0 20px rgba(255, 159, 28, 0.4);
-}
-.glow-text-green {
-    text-shadow: 0 0 20px rgba(46, 196, 182, 0.4);
+/* 2. Typography & Core Design System Tokens */
+.text-6xl { font-size: 3.75rem; line-height: 1.1; }
+.text-4xl { font-size: 2.25rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-xl { font-size: 1.25rem; }
+.text-lg { font-size: 1.125rem; }
+.text-base { font-size: 1rem; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.font-bold { font-weight: 700; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+.leading-relaxed { line-height: 1.625; }
+
+.text-green { color: var(--green); }
+.text-amber { color: var(--amber); }
+.text-white { color: #ffffff; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-400 { color: #9ca3af; }
+.text-gray-500 { color: #6b7280; }
+.text-gray-600 { color: #4b5563; }
+
+.text-gradient-amber {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .text-gradient-green {
-    background: linear-gradient(135deg, #fff, var(--green-glow));
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.text-gradient-amber {
-    background: linear-gradient(135deg, #fff, var(--amber-glow));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.glow-text-amber {
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
 }
 
-/* Sticky Navbar Elements */
+/* 3. Grid & Structural Component Frame Utilities */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+.items-center { align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-center { display: flex; justify-content: center; align-items: center; gap: 2rem; }
+.bg-dark-soft { background-color: var(--bg-dark-soft); }
+.border-y { border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
+.border-t { border-top: 1px solid #111827; }
+.border-amber-alpha { border-color: var(--border-amber-alpha); }
+.gap-12 { gap: 3rem; }
+
+/* Section Specific Overrides */
+.section-isolation, .hardware-display-fix { position: relative; z-index: 2; }
+.visibility-override { display: block !important; opacity: 1 !important; }
+
+/* 4. Global Structural Components */
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 24px 0;
-    transition: background-color 0.4s ease, padding 0.4s ease, border-bottom 0.4s ease;
-}
-.navbar.scrolled {
-    background-color: rgba(7, 9, 14, 0.95);
+    z-index: 100;
+    background: rgba(9, 10, 15, 0.85);
     backdrop-filter: blur(12px);
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 .nav-container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
 }
 .logo {
-    font-weight: 900;
-    letter-spacing: 0.2em;
+    font-weight: 800;
+    letter-spacing: 0.1em;
     color: #fff;
     text-decoration: none;
-    font-size: 1.5rem;
 }
-.logo span { color: var(--amber-glow); }
+.logo span { color: var(--amber); }
 .nav-links a {
-    color: #a0aec0;
+    color: var(--text-light);
     text-decoration: none;
-    font-size: 0.85rem;
+    margin-left: 2rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-left: 32px;
-    font-weight: 600;
+    letter-spacing: 0.05em;
     transition: color 0.3s;
 }
-.nav-links a:hover, .nav-links a.active {
-    color: var(--green-glow);
-}
+.nav-links a.active, .nav-links a:hover { color: var(--amber); }
 
-/* Global Hero Base Styling */
-.page-hero {
-    height: 45vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at center, #131b26 0%, var(--bg-dark) 70%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    padding-top: 80px;
-}
-
-/* Stats Wall Execution */
-.stat-card {
-    background: var(--bg-dark-soft);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 40px 24px;
-    border-radius: 4px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+/* Hero Visual Canvas Systems */
+.hero-canvas-section, .page-hero {
     position: relative;
+    padding: 10rem 0 8rem 0;
+    background: radial-gradient(circle at 50% 30%, #11141d 0%, var(--bg-dark) 70%);
     overflow: hidden;
 }
-.stat-card::before {
-    content: '';
+.hero-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, var(--amber-glow), var(--green-glow));
-    opacity: 0.4;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, var(--bg-dark) 100%);
+    pointer-events: none;
 }
-.stat-card h2 { font-size: 3.5rem; font-weight: 800; margin-bottom: 8px; }
 
-/* CSS Mock India Map Setup */
-.india-map-mock {
-    width: 100%;
-    height: 420px;
-    background: #121821;
-    border: 1px solid rgba(255, 159, 28, 0.1);
-    position: relative;
+.filter-btn {
+    background: var(--amber);
+    color: var(--bg-dark);
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     border-radius: 4px;
-    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0);
-    background-size: 20px 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-btn:hover {
+    background: #ffffff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.tag-amber { background: rgba(245, 158, 11, 0.1); color: var(--amber); }
+
+/* Real-Time Production Marquee System Loop */
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #0d0f14;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1.25rem 0;
+}
+.ticker {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+}
+.ticker__item {
+    padding: 0 3rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #4b5563;
+    white-space: nowrap;
+}
+@keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* 5. Interactive 3D Card Engine */
+.flip-card-container {
+    background-color: transparent;
+    height: 290px;
+    perspective: 1000px;
+}
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+.flip-card-container:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flip-card-front {
+    background: #090a0f;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.flip-card-back {
+    background: linear-gradient(135deg, #0d1510 0%, #06070a 100%);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    transform: rotateY(180deg);
+}
+
+.stat-card {
+    background: #090a0f;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+.stat-card:hover { border-color: rgba(245, 158, 11, 0.25); }
+
+/* 6. ESG Compliance Performance Progress & Maps Telemetry */
+.progress-bar-bg {
+    background: rgba(255, 255, 255, 0.05);
+    height: 6px;
+    border-radius: 3px;
+    width: 100%;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bg-green-glow { background: var(--green); box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
+.bg-amber-glow { background: var(--amber); box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
+
+.badge-card {
+    background: #090a0f;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    width: 230px;
+    text-align: center;
+    border-radius: 4px;
+}
+.badge-logo { color: var(--amber); margin-bottom: 0.5rem; letter-spacing: 0.05em; font-size: 1.125rem; }
+.badge-card p { font-size: 0.75rem; color: #6b7280; line-height: 1.4; }
+
+/* National Geo Tracking Viewports */
+.india-map-mock {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
 }
 .map-pin {
     position: absolute;
     width: 12px;
     height: 12px;
-    background: var(--green-glow);
+    background: var(--green);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 0 15px var(--green-glow);
-    transition: transform 0.3s ease;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
 }
 .map-pin:hover {
-    transform: scale(1.5);
-    background: var(--amber-glow);
-    box-shadow: 0 0 15px var(--amber-glow);
+    transform: scale(1.3);
+    background: var(--amber);
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.3);
 }
-.pin-delhi { top: 25%; left: 40%; }
-.pin-gujarat { top: 50%; left: 22%; }
-.pin-maharashtra { top: 62%; left: 32%; }
-.pin-karnataka { top: 78%; left: 38%; }
+.pin-delhi { top: 25%; left: 45%; }
+.pin-gujarat { top: 48%; left: 25%; }
+.pin-maharashtra { top: 60%; left: 35%; }
+.pin-karnataka { top: 78%; left: 42%; }
 
 .map-tooltip {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(7, 9, 14, 0.9);
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #fff;
-    border-radius: 3px;
-    pointer-events: none;
-}
-
-/* Charts Components */
-.progress-bar-bg {
-    width: 100%;
-    height: 6px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 3px;
-    overflow: hidden;
-}
-.progress-bar-fill {
-    height: 100%;
-    width: 0;
-    transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
-}
-.bg-green-glow { background: var(--green-glow); box-shadow: 0 0 10px var(--green-glow); }
-.bg-amber-glow { background: var(--amber-glow); box-shadow: 0 0 10px var(--amber-glow); }
-
-/* Accreditations Row */
-.badge-card {
-    background: var(--bg-dark-soft);
-    padding: 24px;
-    border-radius: 4px;
-    width: 240px;
-    border-bottom: 2px solid rgba(255,255,255,0.05);
-    transition: border-color 0.3s;
-}
-.badge-card:hover {
-    border-color: var(--green-glow);
-}
-.badge-logo {
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
-    color: #fff;
-    margin-bottom: 12px;
-}
-.badge-card p {
+    background: #0d0f14;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0.75rem;
     font-size: 0.75rem;
-    color: #718096;
-    line-height: 1.4;
-}
-
-/* Portfolio Filtering Interface */
-.filter-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #a0aec0;
-    padding: 10px 24px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-.filter-btn:hover, .filter-btn.active {
-    border-color: var(--amber-glow);
-    color: #fff;
-    background: rgba(255, 159, 28, 0.03);
-}
-
-/* Project Cards Visual Matrix */
-.project-card {
-    background: var(--bg-dark-soft);
-    border: 1px solid rgba(255,255,255,0.03);
+    color: #ffffff;
     border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 50;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
-.project-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(46, 196, 182, 0.3);
-}
-.project-img-placeholder {
-    width: 100%;
-    height: 220px;
-    background: #141a24;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    color: #4a5568;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(255,255,255,0.02);
-}
-.tag {
-    display: inline-block;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 4px 10px;
-    border-radius: 2px;
-    font-weight: 700;
-}
-.tag-amber { background: var(--amber-alpha); color: var(--amber-glow); }
-.tag-green { background: var(--green-alpha); color: var(--green-glow); }
 
-/* Deep-Dive Architectural Modal Overlay */
+.project-img-placeholder img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 7. Products Fluid Digester Simulation Engine Styles */
+.digester-visual-frame {
+    background: #0d0f14;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.digester-tank {
+    position: relative;
+    width: 200px;
+    height: 260px;
+    border: 4px solid #374151;
+    border-radius: 12px 12px 40px 40px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.3);
+}
+.fluid-level-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    background: linear-gradient(180deg, #1e291b 0%, #0a0f09 100%);
+    border-top: 2px solid var(--green);
+}
+.agitation-shaft-mock {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px;
+    height: 80%;
+    background: #4b5563;
+    transform: translateX(-50%);
+}
+.agitation-shaft-mock::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    left: -20px;
+    width: 46px;
+    height: 4px;
+    background: #6b7280;
+    animation: rotateBlade 2s linear infinite;
+}
+@keyframes rotateBlade {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(-1); }
+    100% { transform: scaleX(1); }
+}
+.gas-bubble-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(16, 185, 129, 0.6);
+    border-radius: 50%;
+    animation: floatUp 3s infinite ease-in;
+}
+@keyframes floatUp {
+    0% { transform: translateY(40px) scale(0.6); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+}
+
+/* 8. Deep-Dive Interactive Analytical Overlays */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(4, 5, 8, 0.9);
+    inset: 0;
+    background: rgba(5, 6, 8, 0.85);
     backdrop-filter: blur(8px);
-    z-index: 2000;
     display: flex;
-    align-items: center;
     justify-content: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.4s ease;
+    align-items: center;
+    z-index: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
 .modal-content {
-    width: 840px;
-    max-height: 90vh;
-    border-radius: 4px;
-    padding: 40px;
+    background: var(--bg-dark-soft);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    width: 90%;
+    max-width: 650px;
+    padding: 3rem;
     position: relative;
-    overflow-y: auto;
 }
 .modal-close-btn {
     position: absolute;
-    top: 20px; right: 20px;
-    background: transparent; border: none;
-    color: #718096; font-size: 2rem; cursor: pointer;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
 }
-.modal-close-btn:hover { color: #fff; }
 
-/* Structural Footer Elements */
+/* 9. Unified Architectural Footer */
 .footer {
-    background: #040609;
+    background: #050608;
+    padding: 5rem 0 2rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.02);
-    padding: 80px 0 30px 0;
 }
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
-    gap: 60px;
-}
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a {
-    color: #718096;
+.footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 4rem; }
+.footer-grid-three { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 4rem; }
+.footer-links, .footer-links-unified { list-style: none; }
+.footer-links li, .footer-links-unified li { margin-bottom: 0.75rem; }
+.footer-links a, .footer-links-unified a {
+    color: #6b7280;
     text-decoration: none;
-    font-size: 0.85rem;
-    transition: color 0.3s;
+    font-size: 0.875rem;
+    transition: color 0.2s;
 }
-.footer-links a:hover { color: var(--amber-glow); }
+.footer-links a:hover, .footer-links-unified a:hover { color: #ffffff; }
+.framework-text-block { border-top: 1px solid rgba(255,255,255,0.03); padding-top: 1rem; }
 
-/* Floating WhatsApp Application Element */
+/* Fixed Engineering Channels */
 .whatsapp-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 2rem;
+    right: 2rem;
     background: #25d366;
     color: white;
     width: 56px;
     height: 56px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-    z-index: 999;
-    transition: transform 0.3s ease;
+    z-index: 99;
 }
-.whatsapp-btn:hover {
-    transform: scale(1.1) rotate(8deg);
-}
-
-/* GSAP Functional Preparation Properties */
-.reveal-up, .reveal-left, .reveal-right { opacity: 0; }
