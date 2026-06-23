@@ -1,0 +1,379 @@
+/* Core Structural Settings for Monitor / Desktop Viewports (min 1280px optimized) */
+:root {
+    --bg-dark: #07090e;
+    --bg-dark-soft: #0f131a;
+    --amber-glow: #ff9f1c;
+    --green-glow: #2ec4b6;
+    --text-light: #f4f5f6;
+    --amber-alpha: rgba(255, 159, 28, 0.15);
+    --green-alpha: rgba(46, 196, 182, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    min-width: 1280px; /* Forces uniform monitor standard layout execution */
+}
+
+/* Typography Utility */
+.text-center { text-align: center; }
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.15em; }
+.tracking-widest { letter-spacing: 0.25em; }
+.font-bold { font-weight: 700; }
+.text-6xl { font-size: 3.75rem; }
+.text-2xl { font-size: 1.75rem; }
+.text-xl { font-size: 1.25rem; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.text-gray-400 { color: #a0aec0; }
+.text-gray-500 { color: #718096; }
+.text-gray-600 { color: #4a5568; }
+.text-white { color: #ffffff; }
+.text-amber { color: var(--amber-glow); }
+.text-green { color: var(--green-glow); }
+
+/* Layout Grid Utilities */
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+.py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.pb-20 { padding-bottom: 5rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-6 { gap: 1.5rem; }
+.gap-12 { gap: 3rem; }
+.relative { position: relative; }
+.z-10 { z-index: 10; }
+.items-center { align-items: center; }
+
+/* Glowing Text Treatments */
+.glow-text-amber {
+    text-shadow: 0 0 20px rgba(255, 159, 28, 0.4);
+}
+.glow-text-green {
+    text-shadow: 0 0 20px rgba(46, 196, 182, 0.4);
+}
+.text-gradient-green {
+    background: linear-gradient(135deg, #fff, var(--green-glow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-gradient-amber {
+    background: linear-gradient(135deg, #fff, var(--amber-glow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Sticky Navbar Elements */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 24px 0;
+    transition: background-color 0.4s ease, padding 0.4s ease, border-bottom 0.4s ease;
+}
+.navbar.scrolled {
+    background-color: rgba(7, 9, 14, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.nav-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+.logo span { color: var(--amber-glow); }
+.nav-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-left: 32px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active {
+    color: var(--green-glow);
+}
+
+/* Global Hero Base Styling */
+.page-hero {
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #131b26 0%, var(--bg-dark) 70%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 80px;
+}
+
+/* Stats Wall Execution */
+.stat-card {
+    background: var(--bg-dark-soft);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 40px 24px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--amber-glow), var(--green-glow));
+    opacity: 0.4;
+}
+.stat-card h2 { font-size: 3.5rem; font-weight: 800; margin-bottom: 8px; }
+
+/* CSS Mock India Map Setup */
+.india-map-mock {
+    width: 100%;
+    height: 420px;
+    background: #121821;
+    border: 1px solid rgba(255, 159, 28, 0.1);
+    position: relative;
+    border-radius: 4px;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+.map-pin {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--green-glow);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px var(--green-glow);
+    transition: transform 0.3s ease;
+}
+.map-pin:hover {
+    transform: scale(1.5);
+    background: var(--amber-glow);
+    box-shadow: 0 0 15px var(--amber-glow);
+}
+.pin-delhi { top: 25%; left: 40%; }
+.pin-gujarat { top: 50%; left: 22%; }
+.pin-maharashtra { top: 62%; left: 32%; }
+.pin-karnataka { top: 78%; left: 38%; }
+
+.map-tooltip {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(7, 9, 14, 0.9);
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+/* Charts Components */
+.progress-bar-bg {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+}
+.bg-green-glow { background: var(--green-glow); box-shadow: 0 0 10px var(--green-glow); }
+.bg-amber-glow { background: var(--amber-glow); box-shadow: 0 0 10px var(--amber-glow); }
+
+/* Accreditations Row */
+.badge-card {
+    background: var(--bg-dark-soft);
+    padding: 24px;
+    border-radius: 4px;
+    width: 240px;
+    border-bottom: 2px solid rgba(255,255,255,0.05);
+    transition: border-color 0.3s;
+}
+.badge-card:hover {
+    border-color: var(--green-glow);
+}
+.badge-logo {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 12px;
+}
+.badge-card p {
+    font-size: 0.75rem;
+    color: #718096;
+    line-height: 1.4;
+}
+
+/* Portfolio Filtering Interface */
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #a0aec0;
+    padding: 10px 24px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+    border-color: var(--amber-glow);
+    color: #fff;
+    background: rgba(255, 159, 28, 0.03);
+}
+
+/* Project Cards Visual Matrix */
+.project-card {
+    background: var(--bg-dark-soft);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(46, 196, 182, 0.3);
+}
+.project-img-placeholder {
+    width: 100%;
+    height: 220px;
+    background: #141a24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 700;
+}
+.tag-amber { background: var(--amber-alpha); color: var(--amber-glow); }
+.tag-green { background: var(--green-alpha); color: var(--green-glow); }
+
+/* Deep-Dive Architectural Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(4, 5, 8, 0.9);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-content {
+    width: 840px;
+    max-height: 90vh;
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    overflow-y: auto;
+}
+.modal-close-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: transparent; border: none;
+    color: #718096; font-size: 2rem; cursor: pointer;
+}
+.modal-close-btn:hover { color: #fff; }
+
+/* Structural Footer Elements */
+.footer {
+    background: #040609;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 80px 0 30px 0;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 60px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+    color: #718096;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--amber-glow); }
+
+/* Floating WhatsApp Application Element */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+.whatsapp-btn:hover {
+    transform: scale(1.1) rotate(8deg);
+}
+
+/* GSAP Functional Preparation Properties */
+.reveal-up, .reveal-left, .reveal-right { opacity: 0; }

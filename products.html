@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280, initial-scale=1.0">
+    <title>Technology Architecture | Phenix Biogas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-dark text-light font-sans">
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">PHENIX<span>.</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Solutions</a>
+                <a href="technology.html" class="active">Technology</a>
+                <a href="about.html">About</a>
+                <a href="impact.html">Impact</a>
+                <a href="projects.html">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="page-hero relative">
+        <div class="hero-overlay"></div>
+        <div class="container relative z-10 text-center">
+            <h1 class="glow-text-amber text-6xl font-bold uppercase tracking-wider">The Intelligent Biological Engine</h1>
+            <p class="text-gray-400 text-xl mt-4 max-w-2xl mx-auto">Where industrial engineering converges with thermodynamic and algorithmic control mechanisms.</p>
+        </div>
+    </section>
+
+    <!-- Animated Digester Cross-Section Simulation Component -->
+    <section class="py-20 container">
+        <div class="grid-2 gap-12 items-center">
+            <div class="digester-visual-frame relative reveal-left">
+                <div class="digester-tank">
+                    <div class="fluid-level-wave"></div>
+                    <div class="agitation-shaft-mock"></div>
+                    <div class="gas-bubble-particle" style="left:30%; top:60%;"></div>
+                    <div class="gas-bubble-particle" style="left:60%; top:40%;"></div>
+                    <div class="gas-bubble-particle" style="left:45%; top:20%;"></div>
+                </div>
+            </div>
+            <div class="reveal-right">
+                <h3 class="text-2xl font-bold text-amber uppercase tracking-wider mb-4">Thermophilic Smart Digester Matrix</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">Our systems maintain structural core conditions within narrow thermophilic bands ($50^\circ\text{C}$ to $55^\circ\text{C}$). This hyper-accelerates metabolic degradation kinetics compared to conventional mesophilic operations.</p>
+                <p class="text-gray-400 text-sm leading-relaxed">Continuous automated tracking monitors real-time changes in internal volatile fatty acids ($VFA$) to volatile alkalinity ratios, providing predictive protection against unexpected organic overloading spikes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IoT Telemetry Monitoring Dashboard Mockup -->
+    <section class="py-20 bg-dark-soft border-y border-gray-900">
+        <div class="container">
+            <h3 class="text-2xl font-bold text-green text-center uppercase tracking-wider mb-10">Phenix-OS Edge IoT Telemetry</h3>
+            <div class="grid-4">
+                <div class="stat-card">
+                    <div class="text-xs text-gray-500 font-bold uppercase tracking-wider">Bioreactor Core pH</div>
+                    <div class="text-3xl font-bold text-green mt-2">7.34</div>
+                    <div class="text-xs text-gray-600 mt-1">Optimal Buffering Zone</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-xs text-gray-500 font-bold uppercase tracking-wider">Internal Pressure</div>
+                    <div class="text-3xl font-bold text-amber mt-2">4.2 mbar</div>
+                    <div class="text-xs text-gray-600 mt-1">Safety Relief Margin Nom</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-xs text-gray-500 font-bold uppercase tracking-wider">H₂S Concentration</div>
+                    <div class="text-3xl font-bold text-green mt-2">&lt; 15 ppm</div>
+                    <div class="text-xs text-gray-600 mt-1">Pre-Scrubber Index Target</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-xs text-gray-500 font-bold uppercase tracking-wider">Net Thermal Load</div>
+                    <div class="text-3xl font-bold text-green mt-2">54.8 °C</div>
+                    <div class="text-xs text-gray-600 mt-1">CHP Loop Balanced</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IP & Patents Portfolio Display -->
+    <section class="py-20 container text-center">
+        <h3 class="text-xs uppercase tracking-widest text-gray-500 mb-10">Proprietary Intellectual Property Frameworks</h3>
+        <div class="grid-2 gap-12 text-left">
+            <div class="stat-card reveal-up">
+                <h4 class="text-white font-bold text-lg">PATENT ID: IN-BIOMETH-2024-A</h4>
+                <p class="text-xs text-gray-400 mt-2">Dynamic variable-pitch internal mixing impellers optimizing fluid dynamics inside high-solids anaerobic systems.</p>
+            </div>
+            <div class="stat-card reveal-up">
+                <h4 class="text-white font-bold text-lg">PATENT ID: IN-MEMBRANE-2025-M</h4>
+                <p class="text-xs text-gray-400 mt-2">Multi-stage counter-current membrane separation algorithm for isolating trace carbon dioxide components cleanly without chemical inputs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h4 class="logo text-xl">PHENIX<span>.</span></h4>
+                <p class="text-gray-500 text-sm mt-2">Engineering the circular carbon cycle through advanced bioreactor networks.</p>
+            </div>
+            <div>
+                <h5 class="text-amber uppercase tracking-wider text-sm mb-4">Nav Structural</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Solutions</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-green uppercase tracking-wider text-sm mb-4">Intellectual Property</h5>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="impact.html">Impact Metrics</a></li>
+                    <li><a href="projects.html">Case Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white uppercase tracking-wider text-sm mb-4">Framework Verification</h5>
+                <div class="text-xs text-gray-500 leading-relaxed">
+                    Registered Project Developer under Ministry of New and Renewable Energy (MNRE), Govt of India.
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center text-xs text-gray-600 mt-12 pt-6 border-t border-gray-900">
+            &copy; 2026 Phenix Biogas Energy Inc. All Rights Reserved. Engineered for Global Carbon Mitigation.
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/910000000000" class="whatsapp-btn" target="_blank"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-3.511c1.56.926 3.454 1.414 5.383 1.415h.005c5.543 0 10.054-4.51 10.058-10.051.002-2.685-1.041-5.21-2.937-7.109-1.894-1.897-4.417-2.942-7.104-2.943-5.549 0-10.06 4.511-10.064 10.052-.001 1.95.51 3.852 1.481 5.56l-.379 1.383 1.422-.373z"/></svg></a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
