@@ -55,7 +55,7 @@ body {
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .uppercase { text-transform: uppercase; }
-.max-w-2xl { max-w: 42rem; }
+.max-w-2xl { max-width: 42rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
 /* 2. Typography & Core Design System Tokens */
@@ -93,6 +93,9 @@ body {
 }
 .glow-text-amber {
     text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+.glow-text-green {
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
 /* 3. Grid & Structural Component Frame Utilities */
@@ -210,6 +213,10 @@ body {
     color: #4b5563;
     white-space: nowrap;
 }
+.ticker__sep {
+    padding: 0 0.5rem;
+    color: rgba(245, 158, 11, 0.3);
+}
 @keyframes marquee {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-50%, 0, 0); }
@@ -299,6 +306,11 @@ body {
     background: rgba(255, 255, 255, 0.01);
     border: 1px dashed rgba(255, 255, 255, 0.08);
     border-radius: 4px;
+}
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 .map-pin {
     position: absolute;

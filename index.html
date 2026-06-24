@@ -1,133 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280, initial-scale=1.0">
-    <title>Phenix Biogas | Waste Reborn As Clean Energy</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-</head>
-<body class="bg-dark text-light font-sans">
+/**
+ * PHENIX BIOGAS INFRASTRUCTURE ENGINE
+ * Core Frontend Interactivity Framework v2.1.0
+ */
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">PHENIX<span>.</span></a>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="products.html">Solutions</a>
-                <a href="technology.html">Technology</a>
-                <a href="about.html">About Us</a>
-                <a href="impact.html">Impact</a>
-                <a href="cards.html">Cards Portfolio</a>
-                <a href="projects.html">Projects</a>
-            </div>
-        </div>
-    </nav>
+document.addEventListener("DOMContentLoaded", () => {
+    // Initialize all core interaction layers
+    initScrollAnimations();
+    initAnimatedCounters();
+    initMapTelemetry();
+    initArchitecturalModal();
+});
 
-    <section class="hero-canvas-section relative">
-        <div class="hero-overlay"></div>
-        <div class="container relative z-10 text-center">
-            <span class="tag tag-amber tracking-widest uppercase mb-4 reveal-up">The Circular Carbon Rebirth</span>
-            <h1 class="glow-text-amber text-6xl font-bold uppercase tracking-wider mt-2 reveal-up">Waste Reborn.<br>Energy Defined.</h1>
-            <p class="text-gray-400 text-xl mt-6 max-w-2xl mx-auto reveal-up">Engineering next-generation anaerobic networks that upgrade organic liabilities into high-purity utility assets.</p>
-            <div class="mt-8 reveal-up">
-                <a href="products.html" class="filter-btn active" style="text-decoration:none; display:inline-block;">Explore Solutions</a>
-            </div>
-        </div>
-    </section>
+/**
+ * 1. GSAP ScrollTrigger Reveal Animations
+ * Automatically tracks elements with .reveal-up, .reveal-left, and .reveal-right
+ * classes as they scroll into the viewport window.
+ */
+function initScrollAnimations() {
+    // Ensure GSAP and ScrollTrigger plugins are loaded locally or via CDN
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger);
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <div class="ticker__item">PHENIX BIOREACTOR MATRIX ONLINE...</div>
-            <div class="ticker__item"><span class="text-green">CARBON MITIGATION: 450,230 MT CO2e</span>...</div>
-            <div class="ticker__item"><span class="text-amber">METHANE PURITY INDEX: 98.4%</span>...</div>
-            <div class="ticker__item">GOBAR-DHAN COMPLIANT ASSETS SECURED...</div>
-            <div class="ticker__item">DAILY MSW PROCESSING CAPACITY: 2,500 TPD...</div>
-            <div class="ticker__item">PHENIX BIOREACTOR MATRIX ONLINE...</div>
-            <div class="ticker__item"><span class="text-green">CARBON MITIGATION: 450,230 MT CO2e</span>...</div>
-            <div class="ticker__item"><span class="text-amber">METHANE PURITY INDEX: 98.4%</span>...</div>
-        </div>
-    </div>
+        // Vertical Reveal Up
+        gsap.utils.toArray(".reveal-up").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
 
-    <section class="py-20 container text-center">
-        <div class="max-w-2xl mx-auto reveal-up">
-            <h2 class="text-3xl font-bold uppercase tracking-wider text-green mb-4">Operational Matrix Portfolio</h2>
-            <p class="text-gray-400 mb-8">We have consolidated all operational vectors, metrics matrices, and structural certification profiles onto a dedicated overview space.</p>
-            <a href="cards.html" class="filter-btn active" style="text-decoration:none; display:inline-block;">Open Cards Portfolio &rarr;</a>
-        </div>
-    </section>
+        // Horizontal Reveal Left-to-Right
+        gsap.utils.toArray(".reveal-left").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, x: -50 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
 
-    <section class="py-20 bg-dark-soft border-y border-amber-alpha">
-        <div class="container grid-2 gap-12 items-center">
-            <div class="reveal-left">
-                <span class="text-xs uppercase font-bold tracking-widest text-amber">Engineered Hardware</span>
-                <h2 class="text-4xl font-bold uppercase tracking-wider mt-2 text-white">Commercial Energy Hardware</h2>
-                <p class="text-gray-400 text-base mt-4 leading-relaxed">Our modular high-rate bioreactors are manufactured to scale dynamically with processing demand, guaranteeing maximum volatile solids destruction rates and continuous power outputs.</p>
-                <div class="mt-6">
-                    <a href="products.html" class="text-green font-bold text-sm uppercase tracking-wider" style="text-decoration:none;">Review Technical Specifications &rarr;</a>
-                </div>
-            </div>
-            <div class="project-img-placeholder reveal-right">
-                <img src="https://images.unsplash.com/photo-1542336391-ec2936d8f318?auto=format&fit=crop&q=80&w=800" alt="Industrial Bioreactor Hardware Architecture Facility">
-            </div>
-        </div>
-    </section>
+        // Horizontal Reveal Right-to-Left
+        gsap.utils.toArray(".reveal-right").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, x: 50 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+    }
+}
 
-    <section class="py-10 text-center container">
-        <div class="flex-between" style="opacity: 0.4; filter: grayscale(100%);">
-            <span class="font-bold tracking-widest text-sm">MINISTRY OF NEW & RENEWABLE ENERGY</span>
-            <span class="font-bold tracking-widest text-sm">NATIONAL BIO-ENERGY PROGRAMME</span>
-            <span class="font-bold tracking-widest text-sm">SATAT INITIATIVE RECOGNIZED</span>
-            <span class="font-bold tracking-widest text-sm">ISO 9001 SYSTEM SECURITY</span>
-        </div>
-    </section>
+/**
+ * 2. Auto-Incrementing Impact Counters
+ * Animates analytical numerical vectors on the Impact page from 0 to target value 
+ * using scroll thresholds.
+ */
+function initAnimatedCounters() {
+    const counters = document.querySelectorAll(".counter");
+    if (counters.length === 0) return;
 
-    <footer class="footer">
-        <div class="container footer-grid-three">
-            <div>
-                <h4 class="logo text-xl">PHENIX<span>.</span></h4>
-                <p class="text-gray-500 text-sm mt-2">Engineering the circular carbon cycle through advanced bioreactor networks.</p>
-                <div class="text-xs text-gray-500 leading-relaxed mt-6 framework-text-block">
-                    <strong>Framework Verification:</strong><br>
-                    Registered Project Developer under Ministry of New and Renewable Energy (MNRE), Govt of India.
-                </div>
-            </div>
-            <div>
-                <h5 class="text-amber uppercase tracking-wider text-sm mb-4">Navigation & Matrix</h5>
-                <ul class="footer-links-unified">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Solutions</a></li>
-                    <li><a href="technology.html">Technology</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="impact.html">Impact Metrics</a></li>
-                    <li><a href="cards.html">Cards Portfolio</a></li>
-                    <li><a href="projects.html">Case Portfolio</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-green uppercase tracking-wider text-sm mb-4">Corporate Headquarters</h5>
-                <div class="contact-info-block text-sm text-gray-400">
-                    <p class="mb-4">
-                        <strong>Address:</strong><br>
-                        Phenix Biogas Energy Tower, Block C, Functional Industrial Estate, New Delhi, DL 110020, India
-                    </p>
-                    <p>
-                        <strong>Email Infrastructure:</strong><br>
-                        <a href="mailto:operations@phenixbiogas.com" class="text-amber" style="text-decoration:none;">operations@phenixbiogas.com</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center text-xs text-gray-600 mt-12 pt-6 border-t border-gray-900">
-            &copy; 2026 Phenix Biogas Energy Inc. All Rights Reserved. Engineered for Global Carbon Mitigation.
-        </div>
-    </footer>
+    const countTo = (counter) => {
+        const target = +counter.getAttribute("data-target");
+        const duration = 2000; // Animation lifecycle time in milliseconds
+        const startTime = performance.now();
 
-    <a href="https://wa.me/910000000000" class="whatsapp-btn" target="_blank">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-3.511c1.56.926 3.454 1.414 5.383 1.415h.005c5.543 0 10.054-4.51 10.058-10.051.002-2.685-1.041-5.21-2.937-7.109-1.894-1.897-4.417-2.942-7.104-2.943-5.549 0-10.06 4.511-10.064 10.052-.001 1.95.51 3.852 1.481 5.56l-.379 1.383 1.422-.373z"/></svg>
-    </a>
+        const updateCount = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth mathematical slowdown
+            const easeOutQuad = progress * (2 - progress);
+            const currentValue = Math.floor(easeOutQuad * target);
 
-    <script src="js/main.js"></script>
-</body>
-</html>
+            counter.innerText = currentValue;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        requestAnimationFrame(updateCount);
+    };
+
+    // Trigger calculation when numbers hit the visual range via ScrollTrigger if available
+    if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.create({
+            trigger: ".stats-wall",
+            start: "top 85%",
+            onEnter: () => {
+                counters.forEach(c => countTo(c));
+            }
+        });
+    } else {
+        // Fallback execution if dependency loops are delayed
+        counters.forEach(c => countTo(c));
+    }
+}
+
+/**
+ * 3. Regional Map Telemetry Module
+ * Binds regional geo-location coordinates to a highly responsive tracker tooltip viewport.
+ */
+function initMapTelemetry() {
+    const tooltip = document.getElementById("map-tooltip");
+    const pins = document.querySelectorAll(".map-pin");
+    if (!tooltip || pins.length === 0) return;
+
+    pins.forEach(pin => {
+        // Hover state listener
+        pin.addEventListener("mouseenter", () => {
+            const info = pin.getAttribute("data-info");
+            tooltip.innerText = info;
+            tooltip.style.opacity = "1";
+            tooltip.style.visibility = "visible";
+            tooltip.classList.add("active");
+        });
+
+        // Mouse motion vector mapping
+        pin.addEventListener("mousemove", (e) => {
+            const mapWrapper = pin.parentElement;
+            const mapRect = mapWrapper.getBoundingClientRect();
+            
+            // Offset coordinates smoothly around mouse point indices
+            const leftPos = e.clientX - mapRect.left + 15;
+            const topPos = e.clientY - mapRect.top + 15;
+            
+            tooltip.style.left = `${leftPos}px`;
+            tooltip.style.top = `${topPos}px`;
+        });
+
+        // Mouse exit listener
+        pin.addEventListener("mouseleave", () => {
+            tooltip.style.opacity = "0";
+            tooltip.style.visibility = "hidden";
+            tooltip.classList.remove("active");
+            tooltip.innerText = "Hover over regional pins";
+        });
+    });
+}
+
+/**
+ * 4. Deep-Dive Architectural Modal Overlay
+ * Handles programmatic data generation for engineering card overlays.
+ */
+function initArchitecturalModal() {
+    const overlay = document.querySelector(".modal-overlay");
+    const closeBtn = document.querySelector(".modal-close-btn");
+    const modalBody = document.querySelector(".modal-body-render");
+    const triggers = document.querySelectorAll("[data-modal-target]");
+
+    if (!overlay || !closeBtn || !modalBody) return;
+
+    // Open Modal with targeted dataset content
+    triggers.forEach(trigger => {
+        trigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetType = trigger.getAttribute("data-modal-target");
+            
+            // Build situational technical specifications content inside modal context windows
+            if (targetType === "hardware-spec") {
+                modalBody.innerHTML = `
+                    <h3 class="text-2xl font-bold text-amber uppercase mb-4">Anaerobic Hardware Blueprint</h3>
+                    <p class="text-sm text-gray-300 mb-4">High-rate automated system arrays structured with high continuous loading specifications:</p>
+                    <table class="w-full text-left text-xs border border-gray-800 text-gray-400">
+                        <tr class="border-b border-gray-800 bg-black-pure"><th class="p-2">Parameter</th><th class="p-2">Engineering Value</th></tr>
+                        <tr class="border-b border-gray-800"><td class="p-2">Core Temp Band</td><td class="p-2 text-green">55°C (Thermophilic)</td></tr>
+                        <tr class="border-b border-gray-800"><td class="p-2">Volatile Solids Red.</td><td class="p-2 text-green">Up to 88% Net destruction</td></tr>
+                        <tr><td class="p-2">Biomaterial Ingestion</td><td class="p-2 text-amber">Continuous Dual-Phase Feed</td></tr>
+                    </table>
+                `;
+            } else {
+                modalBody.innerHTML = `
+                    <h3 class="text-2xl font-bold text-green uppercase mb-4">System Telemetry Matrix</h3>
+                    <p class="text-sm text-gray-300">Live configuration arrays currently synchronizing edge monitoring streams to remote operational clouds.</p>
+                `;
+            }
+
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden"; // Clip underlying scrolling actions
+        });
+    });
+
+    // Close Actions
+    const closeModal = () => {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+    };
+
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+    });
+}
