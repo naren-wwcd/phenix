@@ -1,223 +1,280 @@
-/**
- * PHENIX BIOGAS INFRASTRUCTURE ENGINE
- * Core Frontend Interactivity Framework v2.1.0
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phenix Biogas | Industrial Waste-to-Energy Infrastructure</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-dark text-light font-sans">
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Initialize all core interaction layers
-    initScrollAnimations();
-    initAnimatedCounters();
-    initMapTelemetry();
-    initArchitecturalModal();
-});
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">PHENIX<span>.</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="products.html">Solutions</a>
+                <a href="technology.html">Technology</a>
+                <a href="about.html">About Us</a>
+                <a href="impact.html">Impact</a>
+                <a href="cards.html">Cards Portfolio</a>
+                <a href="projects.html">Projects</a>
+            </div>
+        </div>
+    </nav>
 
-/**
- * 1. GSAP ScrollTrigger Reveal Animations
- * Automatically tracks elements with .reveal-up, .reveal-left, and .reveal-right
- * classes as they scroll into the viewport window.
- */
-function initScrollAnimations() {
-    // Ensure GSAP and ScrollTrigger plugins are loaded locally or via CDN
-    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-        gsap.registerPlugin(ScrollTrigger);
+    <!-- Hero Section -->
+    <section class="hero-canvas-section relative">
+        <div class="hero-overlay"></div>
+        <div class="container relative z-10 text-center">
+            <span class="text-xs uppercase font-bold tracking-widest text-amber">India's Leading Biogas Infrastructure Company</span>
+            <h1 class="glow-text-amber text-6xl font-bold uppercase tracking-wider mt-4">
+                Waste Reborn.<br>Energy Unleashed.
+            </h1>
+            <p class="text-gray-400 text-xl mt-6 max-w-2xl mx-auto leading-relaxed">
+                Phenix builds high-rate thermophilic anaerobic digestion systems that convert organic waste into grid-ready Bio-CNG and renewable electricity across India.
+            </p>
+            <div class="flex-center mt-10">
+                <a href="products.html" class="filter-btn">Explore Solutions</a>
+                <a href="impact.html" style="color:var(--amber); font-size:0.875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; text-decoration:none; border-bottom: 1px solid rgba(245,158,11,0.4); padding-bottom:2px;">View Impact →</a>
+            </div>
+        </div>
+    </section>
 
-        // Vertical Reveal Up
-        gsap.utils.toArray(".reveal-up").forEach(element => {
-            gsap.fromTo(element, 
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
+    <!-- Live Metrics Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker__item">SYSTEM STATUS: OPERATIONAL</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">ACTIVE PLANTS: 250+ PAN-INDIA</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">BIO-CNG OUTPUT: 12M+ KG/YEAR</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">CO₂ MITIGATED: 450,000+ TONNES</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">MNRE APPROVED DEVELOPER</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">SATAT SCHEME PARTNER</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">SYSTEM STATUS: OPERATIONAL</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">ACTIVE PLANTS: 250+ PAN-INDIA</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">BIO-CNG OUTPUT: 12M+ KG/YEAR</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">CO₂ MITIGATED: 450,000+ TONNES</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">MNRE APPROVED DEVELOPER</span>
+            <span class="ticker__sep">◆</span>
+            <span class="ticker__item">SATAT SCHEME PARTNER</span>
+            <span class="ticker__sep">◆</span>
+        </div>
+    </div>
 
-        // Horizontal Reveal Left-to-Right
-        gsap.utils.toArray(".reveal-left").forEach(element => {
-            gsap.fromTo(element, 
-                { opacity: 0, x: -50 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
+    <!-- Core Stats -->
+    <section class="py-20 container">
+        <div class="text-center mb-12 reveal-up">
+            <span class="text-xs uppercase font-bold tracking-widest text-green">Operational Scale</span>
+            <h2 class="text-3xl font-bold uppercase tracking-wider mt-2 text-white">Infrastructure at a Glance</h2>
+        </div>
+        <div class="grid-4">
+            <div class="stat-card reveal-up text-center">
+                <div class="text-gradient-amber font-bold" style="font-size:3rem; line-height:1;">250+</div>
+                <p class="text-sm font-bold text-white uppercase tracking-wider mt-2">Plants Commissioned</p>
+                <p class="text-xs text-gray-500 mt-1">Pan-India deployment footprint</p>
+            </div>
+            <div class="stat-card reveal-up text-center">
+                <div class="text-gradient-green font-bold" style="font-size:3rem; line-height:1;">100M+</div>
+                <p class="text-sm font-bold text-white uppercase tracking-wider mt-2">Tonnes Diverted</p>
+                <p class="text-xs text-gray-500 mt-1">Organic waste treated to date</p>
+            </div>
+            <div class="stat-card reveal-up text-center">
+                <div class="text-gradient-amber font-bold" style="font-size:3rem; line-height:1;">450K</div>
+                <p class="text-sm font-bold text-white uppercase tracking-wider mt-2">CO₂ Tonnes Saved</p>
+                <p class="text-xs text-gray-500 mt-1">Greenhouse gas mitigation</p>
+            </div>
+            <div class="stat-card reveal-up text-center">
+                <div class="text-gradient-green font-bold" style="font-size:3rem; line-height:1;">12M+</div>
+                <p class="text-sm font-bold text-white uppercase tracking-wider mt-2">KG CBG Produced</p>
+                <p class="text-xs text-gray-500 mt-1">Clean fuel generated annually</p>
+            </div>
+        </div>
+    </section>
 
-        // Horizontal Reveal Right-to-Left
-        gsap.utils.toArray(".reveal-right").forEach(element => {
-            gsap.fromTo(element, 
-                { opacity: 0, x: 50 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
-    }
-}
+    <!-- What We Do -->
+    <section class="py-20 bg-dark-soft border-y border-amber-alpha">
+        <div class="container">
+            <div class="text-center mb-12 reveal-up">
+                <span class="text-xs uppercase font-bold tracking-widest text-amber">The Phenix Process</span>
+                <h2 class="text-3xl font-bold uppercase tracking-wider mt-2 text-white">From Waste to Wealth</h2>
+                <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto">Our thermophilic anaerobic digestion systems convert mixed organic waste — municipal solid waste, agricultural residues, and industrial effluents — into Bio-CNG, renewable electricity, and bio-fertilizer.</p>
+            </div>
+            <div class="grid-3">
+                <div class="stat-card reveal-up">
+                    <div class="text-amber font-bold text-lg mb-2 uppercase tracking-wider">01 / Feedstock Intake</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Municipal solid waste, agro-residues, and industrial effluents are received, sorted, and pre-processed through our automated triage systems to optimize digester loading rates.</p>
+                </div>
+                <div class="stat-card reveal-up">
+                    <div class="text-green font-bold text-lg mb-2 uppercase tracking-wider">02 / Thermophilic Digestion</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Proprietary thermophilic bioreactors operating at 50–55°C accelerate anaerobic breakdown up to 3x faster than conventional systems, achieving over 88% volatile solids destruction.</p>
+                </div>
+                <div class="stat-card reveal-up">
+                    <div class="text-amber font-bold text-lg mb-2 uppercase tracking-wider">03 / Clean Energy Output</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Raw biogas is upgraded via membrane separation to 98%+ pure Bio-CNG for grid injection or vehicle fuel. Digestate is pelletized into certified organic bio-fertilizer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/**
- * 2. Auto-Incrementing Impact Counters
- * Animates analytical numerical vectors on the Impact page from 0 to target value 
- * using scroll thresholds.
- */
-function initAnimatedCounters() {
-    const counters = document.querySelectorAll(".counter");
-    if (counters.length === 0) return;
+    <!-- Technology Preview -->
+    <section class="py-20 container">
+        <div class="grid-2 gap-12 items-center">
+            <div class="reveal-left">
+                <span class="text-xs uppercase font-bold tracking-widest text-green">Core Technology</span>
+                <h2 class="text-3xl font-bold uppercase tracking-wider mt-2 text-white">Thermophilic Smart Digester</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mt-4">Our systems maintain continuous thermophilic conditions within a tight 50–55°C band, which hyper-accelerates metabolic degradation kinetics compared to conventional mesophilic operations running at 35–37°C.</p>
+                <p class="text-gray-400 text-sm leading-relaxed mt-3">Real-time monitoring of volatile fatty acid (VFA) to alkalinity ratios provides predictive protection against organic overloading — a common failure mode in competing systems.</p>
+                <a href="technology.html" class="filter-btn" style="display:inline-block; margin-top:1.5rem; text-decoration:none;">Deep Dive →</a>
+            </div>
+            <div class="digester-visual-frame relative reveal-right">
+                <div class="digester-tank">
+                    <div class="fluid-level-wave"></div>
+                    <div class="agitation-shaft-mock"></div>
+                    <div class="gas-bubble-particle" style="left:30%; top:60%;"></div>
+                    <div class="gas-bubble-particle" style="left:60%; top:45%; animation-delay:1s;"></div>
+                    <div class="gas-bubble-particle" style="left:45%; top:25%; animation-delay:2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    const countTo = (counter) => {
-        const target = +counter.getAttribute("data-target");
-        const duration = 2000; // Animation lifecycle time in milliseconds
-        const startTime = performance.now();
+    <!-- ESG & Certifications -->
+    <section class="py-20 bg-dark-soft border-y border-amber-alpha">
+        <div class="container">
+            <div class="text-center mb-12 reveal-up">
+                <span class="text-xs uppercase font-bold tracking-widest text-amber">Regulatory Standing</span>
+                <h2 class="text-3xl font-bold uppercase tracking-wider mt-2 text-white">Certifications & Compliance</h2>
+            </div>
+            <div class="flex-center" style="flex-wrap:wrap; gap:1.5rem;">
+                <div class="badge-card reveal-up">
+                    <div class="badge-logo font-bold">MNRE</div>
+                    <p>Ministry of New &amp; Renewable Energy — Approved Bio-CNG Developer</p>
+                </div>
+                <div class="badge-card reveal-up">
+                    <div class="badge-logo font-bold">SATAT</div>
+                    <p>Sustainable Alternative Towards Affordable Transportation — Registered Scheme Partner</p>
+                </div>
+                <div class="badge-card reveal-up">
+                    <div class="badge-logo font-bold">ISO 14001</div>
+                    <p>Environmental Management Systems — Certified Across All Operational Facilities</p>
+                </div>
+                <div class="badge-card reveal-up">
+                    <div class="badge-logo font-bold">CPCB</div>
+                    <p>Central Pollution Control Board — Full Compliance Clearance Obtained</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const updateCount = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Easing function for smooth mathematical slowdown
-            const easeOutQuad = progress * (2 - progress);
-            const currentValue = Math.floor(easeOutQuad * target);
+    <!-- Featured Projects -->
+    <section class="py-20 container">
+        <div class="text-center mb-12 reveal-up">
+            <span class="text-xs uppercase font-bold tracking-widest text-green">Deployments</span>
+            <h2 class="text-3xl font-bold uppercase tracking-wider mt-2 text-white">Flagship Projects</h2>
+        </div>
+        <div class="grid-2 gap-12">
+            <div class="stat-card reveal-left">
+                <span class="tag tag-amber mb-4" style="display:inline-block;">Gujarat</span>
+                <h4 class="text-white font-bold text-xl mt-2">50 TPD Bio-CNG Mega-Plant</h4>
+                <p class="text-xs text-gray-400 mt-2 leading-relaxed">India's largest private-sector thermophilic biogas facility. Processes agricultural residues from Saurashtra's cotton and groundnut belt into pipeline-quality Bio-CNG supplied directly to the city gas distribution network.</p>
+                <div class="flex-between mt-4" style="font-size:0.75rem;">
+                    <span class="text-green font-bold">Operational since 2024</span>
+                    <span class="text-gray-500">50 TPD Capacity</span>
+                </div>
+            </div>
+            <div class="stat-card reveal-right">
+                <span class="tag tag-amber mb-4" style="display:inline-block; background:rgba(16,185,129,0.1); color:var(--green);">Delhi NCR</span>
+                <h4 class="text-white font-bold text-xl mt-2">12-Node Decentralized MSW Cluster</h4>
+                <p class="text-xs text-gray-400 mt-2 leading-relaxed">A distributed network of 12 compact biogas plants processing municipal solid waste across Delhi's ward boundaries. Eliminates the need for long-distance MSW transport to peripheral landfills.</p>
+                <div class="flex-between mt-4" style="font-size:0.75rem;">
+                    <span class="text-green font-bold">180 TPD Aggregate Capacity</span>
+                    <span class="text-gray-500">12 Nodes</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-10">
+            <a href="projects.html" class="filter-btn" style="text-decoration:none;">View All Deployments</a>
+        </div>
+    </section>
 
-            counter.innerText = currentValue;
+    <!-- CTA -->
+    <section class="py-20 bg-dark-soft border-y border-amber-alpha">
+        <div class="container text-center reveal-up">
+            <span class="text-xs uppercase font-bold tracking-widest text-green">Partner With Phenix</span>
+            <h2 class="text-3xl font-bold uppercase tracking-wider mt-4 text-white">Ready to Convert Waste into Revenue?</h2>
+            <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto leading-relaxed">Whether you're a municipality, agro-industrial group, or infrastructure developer, Phenix provides full-cycle biogas plant design, commissioning, and operations under long-term off-take agreements.</p>
+            <a href="mailto:operations@phenixbiogas.com" class="filter-btn" style="display:inline-block; margin-top:2rem; text-decoration:none;">Get in Touch</a>
+        </div>
+    </section>
 
-            if (progress < 1) {
-                requestAnimationFrame(updateCount);
-            } else {
-                counter.innerText = target;
-            }
-        };
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid-three">
+            <div>
+                <h4 class="logo text-xl">PHENIX<span>.</span></h4>
+                <p class="text-gray-500 text-sm mt-2">Engineering the circular carbon cycle through advanced bioreactor networks across India.</p>
+                <div class="text-xs text-gray-500 leading-relaxed mt-6 framework-text-block">
+                    <strong>Framework Verification:</strong><br>
+                    Registered Project Developer under Ministry of New and Renewable Energy (MNRE), Govt of India.
+                </div>
+            </div>
+            <div>
+                <h5 class="text-amber uppercase tracking-wider text-sm mb-4">Navigation</h5>
+                <ul class="footer-links-unified">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Solutions</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="impact.html">Impact Metrics</a></li>
+                    <li><a href="cards.html">Cards Portfolio</a></li>
+                    <li><a href="projects.html">Case Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-green uppercase tracking-wider text-sm mb-4">Corporate Headquarters</h5>
+                <div class="text-sm text-gray-400">
+                    <p class="mb-4">
+                        <strong>Address:</strong><br>
+                        Phenix Biogas Energy Tower, Block C, Functional Industrial Estate, New Delhi, DL 110020, India
+                    </p>
+                    <p>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:operations@phenixbiogas.com" class="text-amber" style="text-decoration:none;">operations@phenixbiogas.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center text-xs text-gray-600 mt-12 pt-6 border-t border-gray-900">
+            &copy; 2026 Phenix Biogas Energy Inc. All Rights Reserved. Engineered for Global Carbon Mitigation.
+        </div>
+    </footer>
 
-        requestAnimationFrame(updateCount);
-    };
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn" target="_blank" aria-label="Contact us on WhatsApp">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-3.511c1.56.926 3.454 1.414 5.383 1.415h.005c5.543 0 10.054-4.51 10.058-10.051.002-2.685-1.041-5.21-2.937-7.109-1.894-1.897-4.417-2.942-7.104-2.943-5.549 0-10.06 4.511-10.064 10.052-.001 1.95.51 3.852 1.481 5.56l-.379 1.383 1.422-.373z"/></svg>
+    </a>
 
-    // Trigger calculation when numbers hit the visual range via ScrollTrigger if available
-    if (typeof ScrollTrigger !== "undefined") {
-        ScrollTrigger.create({
-            trigger: ".stats-wall",
-            start: "top 85%",
-            onEnter: () => {
-                counters.forEach(c => countTo(c));
-            }
-        });
-    } else {
-        // Fallback execution if dependency loops are delayed
-        counters.forEach(c => countTo(c));
-    }
-}
+    <!-- Modal Overlay (used by technology cards) -->
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-body-render"></div>
+        </div>
+    </div>
 
-/**
- * 3. Regional Map Telemetry Module
- * Binds regional geo-location coordinates to a highly responsive tracker tooltip viewport.
- */
-function initMapTelemetry() {
-    const tooltip = document.getElementById("map-tooltip");
-    const pins = document.querySelectorAll(".map-pin");
-    if (!tooltip || pins.length === 0) return;
-
-    pins.forEach(pin => {
-        // Hover state listener
-        pin.addEventListener("mouseenter", () => {
-            const info = pin.getAttribute("data-info");
-            tooltip.innerText = info;
-            tooltip.style.opacity = "1";
-            tooltip.style.visibility = "visible";
-            tooltip.classList.add("active");
-        });
-
-        // Mouse motion vector mapping
-        pin.addEventListener("mousemove", (e) => {
-            const mapWrapper = pin.parentElement;
-            const mapRect = mapWrapper.getBoundingClientRect();
-            
-            // Offset coordinates smoothly around mouse point indices
-            const leftPos = e.clientX - mapRect.left + 15;
-            const topPos = e.clientY - mapRect.top + 15;
-            
-            tooltip.style.left = `${leftPos}px`;
-            tooltip.style.top = `${topPos}px`;
-        });
-
-        // Mouse exit listener
-        pin.addEventListener("mouseleave", () => {
-            tooltip.style.opacity = "0";
-            tooltip.style.visibility = "hidden";
-            tooltip.classList.remove("active");
-            tooltip.innerText = "Hover over regional pins";
-        });
-    });
-}
-
-/**
- * 4. Deep-Dive Architectural Modal Overlay
- * Handles programmatic data generation for engineering card overlays.
- */
-function initArchitecturalModal() {
-    const overlay = document.querySelector(".modal-overlay");
-    const closeBtn = document.querySelector(".modal-close-btn");
-    const modalBody = document.querySelector(".modal-body-render");
-    const triggers = document.querySelectorAll("[data-modal-target]");
-
-    if (!overlay || !closeBtn || !modalBody) return;
-
-    // Open Modal with targeted dataset content
-    triggers.forEach(trigger => {
-        trigger.addEventListener("click", (e) => {
-            e.preventDefault();
-            const targetType = trigger.getAttribute("data-modal-target");
-            
-            // Build situational technical specifications content inside modal context windows
-            if (targetType === "hardware-spec") {
-                modalBody.innerHTML = `
-                    <h3 class="text-2xl font-bold text-amber uppercase mb-4">Anaerobic Hardware Blueprint</h3>
-                    <p class="text-sm text-gray-300 mb-4">High-rate automated system arrays structured with high continuous loading specifications:</p>
-                    <table class="w-full text-left text-xs border border-gray-800 text-gray-400">
-                        <tr class="border-b border-gray-800 bg-black-pure"><th class="p-2">Parameter</th><th class="p-2">Engineering Value</th></tr>
-                        <tr class="border-b border-gray-800"><td class="p-2">Core Temp Band</td><td class="p-2 text-green">55°C (Thermophilic)</td></tr>
-                        <tr class="border-b border-gray-800"><td class="p-2">Volatile Solids Red.</td><td class="p-2 text-green">Up to 88% Net destruction</td></tr>
-                        <tr><td class="p-2">Biomaterial Ingestion</td><td class="p-2 text-amber">Continuous Dual-Phase Feed</td></tr>
-                    </table>
-                `;
-            } else {
-                modalBody.innerHTML = `
-                    <h3 class="text-2xl font-bold text-green uppercase mb-4">System Telemetry Matrix</h3>
-                    <p class="text-sm text-gray-300">Live configuration arrays currently synchronizing edge monitoring streams to remote operational clouds.</p>
-                `;
-            }
-
-            overlay.classList.add("active");
-            document.body.style.overflow = "hidden"; // Clip underlying scrolling actions
-        });
-    });
-
-    // Close Actions
-    const closeModal = () => {
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-    };
-
-    closeBtn.addEventListener("click", closeModal);
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closeModal();
-    });
-}
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -205,14 +205,14 @@ function initArchitecturalModal() {
                 `;
             }
 
-            overlay.classList.add("open");
+            overlay.classList.add("active");
             document.body.style.overflow = "hidden"; // Clip underlying scrolling actions
         });
     });
 
     // Close Actions
     const closeModal = () => {
-        overlay.classList.remove("open");
+        overlay.classList.remove("active");
         document.body.style.overflow = "";
     };
 
